@@ -1,0 +1,22 @@
+<h2>My Posts</h2>
+<div>
+  <label>Title:</label> <input #blogpostTitle />
+  <button (click)="add(blogpostTitle.value); blogpostTitle.value=''">
+    Add
+  </button>
+</div>
+<ul class="blogposts">
+  <li *ngFor="let blogpost of blogposts" (click)="onSelect(blogpost)"
+      [class.selected]="blogpost === selectedBlogPost">
+    <span class="badge">{{blogpost.id}}</span>
+    <span>{{blogpost.title}}</span>
+    <button class="delete"
+            (click)="delete(blogpost); $event.stopPropagation()">x</button>
+  </li>
+</ul>
+<div *ngIf="selectedBlogPost">
+  <h2>
+    {{selectedBlogPost.Title | uppercase}}
+  </h2>
+  <button (click)="gotoDetail()">View Details</button>
+</div>
